@@ -1,0 +1,13 @@
+development: &dev
+  adapter: postgresql
+  encoding: unicode
+  database: a_table_development
+  pool: 5
+  username: postgres
+  password:
+
+test:
+  <<: *dev
+  database: a_table_test
+  username: postgres
+  password: 
