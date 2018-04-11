@@ -2,7 +2,7 @@ class AddItemsTable < ActiveRecord::Migration[5.1]
   def change
     create_table :items, { id: false } do |t|
       t.string :id
-      t.string :cost
+      t.decimal :cost
       t.string :subscription_id
       t.datetime :start_time
       t.datetime :end_time

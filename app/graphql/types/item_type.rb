@@ -1,9 +1,9 @@
 Types::ItemType = GraphQL::ObjectType.define do
   name 'Item'
   description 'An item of resource'
-  
+
   field :id, types.ID
-  field :cost, types.Int
+  field :cost, types.Float
   field :subscription_id, types.String
   field :start_time, types.String
   field :end_time, types.String

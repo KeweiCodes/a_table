@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20180410065232) do
 
   create_table "items", id: false, force: :cascade do |t|
     t.string "id"
-    t.string "cost"
+    t.decimal "cost"
     t.string "subscription_id"
     t.datetime "start_time"
     t.datetime "end_time"
@@ -27,5 +27,4 @@ ActiveRecord::Schema.define(version: 20180410065232) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 end
