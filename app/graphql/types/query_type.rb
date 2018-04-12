@@ -10,8 +10,6 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :max_cost, types.Int, 'Filter by the maximum cost'
     argument :min_time, types.String, 'Filter by the earliest time'
     argument :max_time, types.String, 'Filter by the latest time'
-    argument :page_start, types.Int, 'Define which item the page starts at'
-    argument :page_length, types.Int, 'Define how many items are in a page'
     argument :order_by, types.String, 'Column to order the results by', default_value: 'id'
 
     resolve ->(object, args, ctx){
@@ -21,8 +19,6 @@ Types::QueryType = GraphQL::ObjectType.define do
       scope = scope.where('cost <= ?', args[:max_cost]) if args[:max_cost]
       scope = scope.where('end_time >= ?', args[:min_time]) if args[:min_time]
       scope = scope.where('start_time >= ?', args[:max_time]) if args[:max_time]
-      scope = scope.offset(args[:page_start]) if args[:page_start]
-      scope = scope.limit(args[:page_length]) if args[:page_length]
       scope = scope.order(args[:order_by]) if args[:order_by]
       scope
     }
