@@ -10,7 +10,7 @@ gem 'rails', '~> 5.1.5'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'graphql'
-gem 'webpacker', '3.2.0'
+gem 'webpacker', '~> 3.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
