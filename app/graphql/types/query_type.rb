@@ -6,8 +6,8 @@ Types::QueryType = GraphQL::ObjectType.define do
     description 'A list of all the items'
 
     argument :subscription_id, types[types.String], 'Filter by speciic subscription ID'
-    argument :min_cost, types.Int, 'Filter by the minimum cost'
-    argument :max_cost, types.Int, 'Filter by the maximum cost'
+    argument :min_cost, types.Float, 'Filter by the minimum cost'
+    argument :max_cost, types.Float, 'Filter by the maximum cost'
     argument :min_time, types.String, 'Filter by the earliest time'
     argument :max_time, types.String, 'Filter by the latest time'
     argument :order_by, types.String, 'Column to order the results by', default_value: 'id'

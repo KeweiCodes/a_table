@@ -6,8 +6,8 @@ import { editFilter } from '../redux/Actions'
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleChange: event => {
-      const intVal = parseInt(event.target.value) || undefined;
-      dispatch(editFilter(ownProps.type, intVal));
+      const floatVal = parseFloat(event.target.value) || undefined;
+      dispatch(editFilter(ownProps.type, floatVal));
     }
   }
 }

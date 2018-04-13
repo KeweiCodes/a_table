@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 const GET_ITEMS = gql`
     query GetItems(
       $subscription_id: [String],
-      $min_cost: Int,
-      $max_cost: Int,
+      $min_cost: Float,
+      $max_cost: Float,
       $min_time: String,
       $max_time: String,
       $order_by: String = "id asc",

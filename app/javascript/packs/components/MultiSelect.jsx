@@ -10,6 +10,7 @@ class MultiSelect extends React.Component {
     return (
       <Select
         multi={true}
+        placeholder={'Select IDs'}
         options={
           loading ? [] :
           data.items.edges.map(

@@ -10,7 +10,9 @@ class DateTimePicker extends React.Component {
       <DatePicker
         selected={date}
         onChange={handleDateChange}
+        dateFormat="LL"
         className="form-control col-md-12"
+        placeholderText="📆"
       />
     )
   }

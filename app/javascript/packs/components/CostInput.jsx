@@ -11,6 +11,7 @@ class CostInput extends React.Component {
         min="0" 
         step="1"
         className="form-control col-md-12"
+        placeholder="💲"
       />
     )
   }
