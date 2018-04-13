@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 const GET_ITEMS = gql`
     query GetItems(
-      $subscription_id: String,
+      $subscription_id: [String],
       $min_cost: Int,
       $max_cost: Int,
       $min_time: String,
@@ -11,7 +11,8 @@ const GET_ITEMS = gql`
       $first: Int,
       $last: Int,
       $before: String,
-      $after: String
+      $after: String,
+      $unique_by: String
     ) {
       items(
         subscription_id: $subscription_id,
@@ -23,7 +24,8 @@ const GET_ITEMS = gql`
         first: $first,
         last: $last,
         before: $before,
-        after: $after
+        after: $after,
+        unique_by: $unique_by
       ){
         pageInfo {
           startCursor
@@ -41,4 +43,5 @@ const GET_ITEMS = gql`
       }
     }
   `
+
 export { GET_ITEMS }

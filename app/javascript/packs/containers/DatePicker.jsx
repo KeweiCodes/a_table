@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import DatePicker from '../components/DatePicker'
 import { editFilter } from '../redux/Actions'
-import moment from 'moment'
 
 const mapStateToProps = (state, ownProps) => {
   return {

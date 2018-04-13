@@ -5,12 +5,13 @@ Types::QueryType = GraphQL::ObjectType.define do
   connection :items, Connections::ItemsConnection do
     description 'A list of all the items'
 
-    argument :subscription_id, types.String, 'Filter by speciic subscription ID'
+    argument :subscription_id, types[types.String], 'Filter by speciic subscription ID'
     argument :min_cost, types.Int, 'Filter by the minimum cost'
     argument :max_cost, types.Int, 'Filter by the maximum cost'
     argument :min_time, types.String, 'Filter by the earliest time'
     argument :max_time, types.String, 'Filter by the latest time'
     argument :order_by, types.String, 'Column to order the results by', default_value: 'id'
+    argument :unique_by, types.String, 'Find records unique by an attribute'
 
     resolve ->(object, args, ctx){
       scope = Item.all
@@ -24,6 +25,7 @@ Types::QueryType = GraphQL::ObjectType.define do
       scope = scope.where('end_time >= ?', args[:min_time]) if args[:min_time]
       scope = scope.where('start_time <= ?', args[:max_time]) if args[:max_time]
       scope = scope.order(args[:order_by]) if args[:order_by]
+      scope = scope.uniq { |m| m[args[:unique_by]] } if args[:unique_by]
       scope
     }
   end

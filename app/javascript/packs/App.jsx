@@ -1,5 +1,7 @@
 import 'react-table/react-table.css'
 import 'react-datepicker/dist/react-datepicker.css';
+import 'react-select/dist/react-select.css';
+import './app.scss';
 
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -14,6 +16,7 @@ import store from './redux/Store';
 
 import CostInput from './containers/CostInput';
 import DatePicker from './containers/DatePicker';
+import MultiSelect from './containers/MultiSelect';
 import Table from './containers/Table';
 
 class App extends React.Component { 
@@ -32,25 +35,31 @@ class App extends React.Component {
       <Provider store={store}>
         <ApolloProvider client={this.state.apolloClient}>
           <div className="container">
-            <div className="form-group row">
-              <div className="col-md-3">
-                <label className="col-form-label">Time From</label>
-                <DatePicker picker_type="min_time" />
+            <div className="app-container">
+              <div className="form-group row">
+                <div className="col-md-3">
+                  <label className="col-form-label">Date From</label>
+                  <DatePicker picker_type="min_time" />
+                </div>
+                <div className="col-md-3">
+                  <label className="col-form-label">Date To</label>
+                  <DatePicker picker_type="max_time" />
+                </div>
+                <div className="col-md-3">
+                  <label className="col-form-label">Cost From</label>
+                  <CostInput type="min_cost"/>
+                </div>
+                <div className="col-md-3">
+                  <label className="col-form-label">Cost To</label>
+                  <CostInput type="max_cost"/>
+                </div>
+                <div className="col-md-12">
+                  <label className="col-form-label">Subscription IDs</label>
+                  <MultiSelect />
+                </div>
               </div>
-              <div className="col-md-3">
-                <label className="col-form-label">Time To</label>
-                <DatePicker picker_type="max_time" />
-              </div>
-              <div className="col-md-3">
-                <label className="col-form-label">Cost From</label>
-                <CostInput type="min_cost"/>
-              </div>
-              <div className="col-md-3">
-                <label className="col-form-label">Cost To</label>
-                <CostInput type="max_cost"/>
-              </div>
+              <Table />
             </div>
-            <Table />
           </div>
         </ApolloProvider>
       </Provider>
