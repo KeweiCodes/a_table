@@ -62,15 +62,20 @@ const TableContainer = (props) => {
   const columns = [{
     Header: 'Data ID',
     accessor: 'node.id',
-    id: 'id'
+    id: 'id',
+    maxWidth: 200,
+    className: 'text-center'
   }, {
     Header: 'Subscription ID',
     accessor: 'node.subscription_id',
-    id: 'subscription_id'
+    id: 'subscription_id',
+    className: 'text-center'
   }, {
     Header: 'Cost',
-    accessor: item => item.node.cost.toFixed(1),
-    id: 'cost'
+    accessor: item => `$${item.node.cost}`,
+    id: 'cost',
+    maxWidth: 200,
+    className: 'text-right'
   }];
 
   return (

@@ -3,7 +3,11 @@ Types::ItemType = GraphQL::ObjectType.define do
   description 'An item of resource'
 
   field :id, types.ID
-  field :cost, types.Float
+  field :cost, types.Float do 
+    resolve ->(object, args, ctx){
+      object.cost.round(1)
+    }
+  end
   field :subscription_id, types.String
   field :start_time, types.String
   field :end_time, types.String
