@@ -15,8 +15,12 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve ->(object, args, ctx){
       scope = Item.all
       scope = scope.where(subscription_id: args[:subscription_id]) if args[:subscription_id]
-      scope = scope.where('cost >= ?', args[:min_cost]) if args[:min_cost]
-      scope = scope.where('cost <= ?', args[:max_cost]) if args[:max_cost]
+      if args[:min_cost] && args[:max_cost]
+        scope = scope.where('cost >= ? AND cost <= ?', args[:min_cost], args[:max_cost])
+      else
+        scope = scope.where('cost >= ?', args[:min_cost]) if args[:min_cost]
+        scope = scope.where('cost <= ?', args[:max_cost]) if args[:max_cost]
+      end
       scope = scope.where('end_time >= ?', args[:min_time]) if args[:min_time]
       scope = scope.where('start_time <= ?', args[:max_time]) if args[:max_time]
       scope = scope.order(args[:order_by]) if args[:order_by]

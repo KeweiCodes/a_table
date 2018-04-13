@@ -12,7 +12,8 @@ import { ApolloProvider } from 'react-apollo';
 import { Provider } from 'react-redux';
 import store from './redux/Store';
 
-import DatePicker from './containers/DatePicker'
+import CostInput from './containers/CostInput';
+import DatePicker from './containers/DatePicker';
 import Table from './containers/Table';
 
 class App extends React.Component { 
@@ -31,8 +32,24 @@ class App extends React.Component {
       <Provider store={store}>
         <ApolloProvider client={this.state.apolloClient}>
           <div className="container">
-            <DatePicker picker_type="min_time" />
-            <DatePicker picker_type="max_time" />
+            <div className="form-group row">
+              <div className="col-md-3">
+                <label className="col-form-label">Time From</label>
+                <DatePicker picker_type="min_time" />
+              </div>
+              <div className="col-md-3">
+                <label className="col-form-label">Time To</label>
+                <DatePicker picker_type="max_time" />
+              </div>
+              <div className="col-md-3">
+                <label className="col-form-label">Cost From</label>
+                <CostInput type="min_cost"/>
+              </div>
+              <div className="col-md-3">
+                <label className="col-form-label">Cost To</label>
+                <CostInput type="max_cost"/>
+              </div>
+            </div>
             <Table />
           </div>
         </ApolloProvider>
