@@ -1,24 +1,7 @@
-# README
+# A Simple Table 
+[Demo](https://a-table.herokuapp.com/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails 5.1 | GraphQL | React | Redux | Apollo
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Author
+Kewei Jiang [@KeweiCodes](https://github.com/KeweiCodes)
