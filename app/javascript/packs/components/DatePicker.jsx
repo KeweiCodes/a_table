@@ -1,6 +1,7 @@
 import React from 'react'
 import DatePicker from 'react-datepicker';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 class DateTimePicker extends React.Component { 
   render(){
@@ -17,7 +18,7 @@ class DateTimePicker extends React.Component {
 
 DateTimePicker.propTypes = {
   handleDateChange: PropTypes.func.isRequired,
-  date: PropTypes.string
+  date: PropTypes.instanceOf(moment)
 }
 
 export default DateTimePicker;
