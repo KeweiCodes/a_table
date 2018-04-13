@@ -65,21 +65,7 @@ class App extends React.Component {
       </Provider>
     );
   }
-
-  handleChange(date){
-    // this.setState({
-    //   startDate: date
-    // });
-  }
 }
-
-// App.defaultProps = {
-//   name: 'David'
-// }
-
-// App.propTypes = {
-//   name: PropTypes.string
-// }
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(

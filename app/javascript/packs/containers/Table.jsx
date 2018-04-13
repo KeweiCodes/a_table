@@ -59,17 +59,32 @@ const TableContainer = (props) => {
     pageFilters['first'] = pageSize;
   }
 
+  const columns = [{
+    Header: 'Data ID',
+    accessor: 'node.id',
+    id: 'id'
+  }, {
+    Header: 'Subscription ID',
+    accessor: 'node.subscription_id',
+    id: 'subscription_id'
+  }, {
+    Header: 'Cost',
+    accessor: item => item.node.cost.toFixed(1),
+    id: 'cost'
+  }];
+
   return (
     <Query 
       query={GET_ITEMS}
       variables={Object.assign({}, filters, pageFilters)}>
       {
         ({loading, error, data, refetch}) => {
+          if (error) return {error};
           return (
             <Table 
               data={data} 
+              columns={columns}
               loading={loading} 
-              error={error}
               page={page}
               pageSize={pageSize}
               totalCount={totalCount}

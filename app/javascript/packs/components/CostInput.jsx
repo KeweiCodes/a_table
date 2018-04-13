@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 class CostInput extends React.Component { 
   render(){
@@ -13,6 +14,10 @@ class CostInput extends React.Component {
       />
     )
   }
+}
+
+CostInput.propTypes = {
+  handleChange: PropTypes.func.isRequired
 }
 
 export default CostInput;

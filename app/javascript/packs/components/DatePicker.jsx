@@ -1,5 +1,6 @@
 import React from 'react'
 import DatePicker from 'react-datepicker';
+import PropTypes from 'prop-types';
 
 class DateTimePicker extends React.Component { 
   render(){
@@ -12,6 +13,11 @@ class DateTimePicker extends React.Component {
       />
     )
   }
+}
+
+DateTimePicker.propTypes = {
+  handleDateChange: PropTypes.func.isRequired,
+  date: PropTypes.string
 }
 
 export default DateTimePicker;

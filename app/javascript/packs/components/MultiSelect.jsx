@@ -1,6 +1,7 @@
 import React from 'react'
 import Select from 'react-select';
 import { Subscription } from 'react-apollo';
+import PropTypes from 'prop-types';
 
 class MultiSelect extends React.Component { 
   render(){    
@@ -29,5 +30,13 @@ class MultiSelect extends React.Component {
     )
   }
 }
+
+MultiSelect.propTypes = {
+  value: PropTypes.array,
+  data: PropTypes.object,
+  handleChange: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
+}
+
 
 export default MultiSelect;

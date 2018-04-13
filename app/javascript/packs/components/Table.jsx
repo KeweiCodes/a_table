@@ -1,40 +1,15 @@
 import React from 'react'
 import ReactTable from 'react-table'
+import PropTypes from 'prop-types';
 
 class Table extends React.Component {  
-  constructor(){
-    super();
-  }
-
-  render(){  
-    const columns = [{
-      Header: 'Data ID',
-      accessor: 'node.id',
-      id: 'id'
-    }, {
-      Header: 'Subscription ID',
-      accessor: 'node.subscription_id',
-      id: 'subscription_id'
-    }, {
-      Header: 'Cost',
-      accessor: item => item.node.cost.toFixed(1),
-      id: 'cost'
-    }];
-
-    const { loading, error } = this.props;
+  render(){ 
+    const { loading, columns } = this.props;
 
     if (loading){
       return <ReactTable data={[]} columns={columns} showPageJump={false}/>
     }
-    if (error){
-      return (
-        <div> 
-        {error.graphQLErrors.map(({ message }, i) => (
-          <span key={i}>{message}</span>
-        ))}
-        </div>
-      )
-    }
+
     const { data, 
             pageSize, 
             handleSortChange, 
@@ -42,9 +17,7 @@ class Table extends React.Component {
             handlePageSizeChange, 
             page 
           } = this.props;
-    
     const { edges, total_count } = data.items;
-   
     const { startCursor, endCursor } = data.items.pageInfo;
     
     return (
@@ -71,4 +44,14 @@ class Table extends React.Component {
   }
 }
 
+Table.propTypes = {
+  data: PropTypes.object,
+  columns: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
+  page: PropTypes.number,
+  pageSize: PropTypes.number,
+  handleSortChange: PropTypes.func.isRequired,
+  handlePageChange: PropTypes.func.isRequired, 
+  handlePageSizeChange: PropTypes.func.isRequired
+}
 export default Table;
