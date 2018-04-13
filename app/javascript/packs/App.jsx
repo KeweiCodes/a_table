@@ -1,48 +1,19 @@
+import 'react-table/react-table.css'
+import 'react-datepicker/dist/react-datepicker.css';
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import 'react-table/react-table.css'
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloProvider, Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import Table from './Table';
+import { ApolloProvider } from 'react-apollo';
 
-const GET_ITEMS = gql`
-  query GetItems(
-    $subscription_id: String,
-    $min_cost: Int,
-    $max_cost: Int,
-    $min_time: String,
-    $max_time: String,
-    $order_by: String = "id asc",
-    $first: Int = 20
-  ) {
-    items(
-      subscription_id: $subscription_id,
-      min_cost: $min_cost,
-      max_cost: $max_cost,
-      min_time: $min_time,
-      max_time: $max_time,
-      order_by: $order_by,
-      first: $first
-    ){
-      pageInfo {
-        startCursor
-        endCursor
-      }
-      edges {
-        cursor
-        node {
-          id,
-          subscription_id,
-          cost
-        }
-      }
-    }
-  }
-`;
+import { Provider } from 'react-redux';
+import store from './redux/Store';
+
+import DatePicker from './containers/DatePicker'
+import Table from './containers/Table';
 
 class App extends React.Component { 
   constructor(){
@@ -50,33 +21,29 @@ class App extends React.Component {
     this.state ={
       apolloClient: new ApolloClient({
         link: new HttpLink({ uri: '/api/v1/graphql'}),
-        cache: new InMemoryCache(),
+        cache: new InMemoryCache()
       })
     };
   }
 
   render() {
     return (
-      <ApolloProvider client={this.state.apolloClient}>
-        <Query 
-          query={GET_ITEMS}
-          variables={{
-            
-          }}>
-          {
-            ({loading, error, data, refetch}) => {
-              return (
-                <Table data={data} loading={loading} refetch={refetch} error={error} />
-              )
-            }
-          }
-        </Query>
-      </ApolloProvider>
+      <Provider store={store}>
+        <ApolloProvider client={this.state.apolloClient}>
+          <div className="container">
+            <DatePicker picker_type="min_time" />
+            <DatePicker picker_type="max_time" />
+            <Table />
+          </div>
+        </ApolloProvider>
+      </Provider>
     );
   }
 
-  componentDidMount(){
-  
+  handleChange(date){
+    // this.setState({
+    //   startDate: date
+    // });
   }
 }
 

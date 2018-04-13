@@ -18,7 +18,7 @@ Types::QueryType = GraphQL::ObjectType.define do
       scope = scope.where('cost >= ?', args[:min_cost]) if args[:min_cost]
       scope = scope.where('cost <= ?', args[:max_cost]) if args[:max_cost]
       scope = scope.where('end_time >= ?', args[:min_time]) if args[:min_time]
-      scope = scope.where('start_time >= ?', args[:max_time]) if args[:max_time]
+      scope = scope.where('start_time <= ?', args[:max_time]) if args[:max_time]
       scope = scope.order(args[:order_by]) if args[:order_by]
       scope
     }
